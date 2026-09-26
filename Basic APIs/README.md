@@ -8,8 +8,7 @@ This folder contains notebooks and scripts used for getting familiar with basic 
 
 ## Learning & Exploration
 
-The other files in this folder were primarily written as stepping stones to understand particular topics and test out specific APIs before building the main brochure maker:
+The other files in this folder:
 
-*   **`ollama_apis.ipynb`**: Exploring local LLM execution using Ollama.
-*   **`gpt_api_and_streaming.ipynb`**: Testing the OpenAI GPT API, specifically focusing on generating text with streaming outputs.
 *   **`my_easy_scraper.py`**: A foundational script used to practice extracting text and data from web pages.
+*   **`usage_and_API_GPT.ipynb`**: A notebook used to practice OpenAI API and understand its usage.

@@ -31,18 +31,21 @@ def fetch_website_links(url):
     return [link for link in links if link]
 
 
-def fetch_all_website_links(start_url, timeout=10):
+def fetch_all_website_links(start_url, max_pages=1000, timeout=10):
     visited_pages = set()
     found_links = set()
     pages_to_visit = deque([start_url])
     start_domain = urlparse(start_url).netloc
-    with tqdm(total=1, desc="Crawling pages", unit=" pages") as pbar:
+    # print(start_domain)
+
+    with tqdm(desc="Crawling pages", unit=" pages") as pbar:
 
         while pages_to_visit:
             current_url = pages_to_visit.popleft()
             if current_url in visited_pages:
                 continue
             visited_pages.add(current_url)
+            pbar.update(1)
             try:
                 response = requests.get(current_url, headers=headers, timeout=timeout)
                 response.raise_for_status()
@@ -64,16 +67,14 @@ def fetch_all_website_links(start_url, timeout=10):
 
                 # Removing fragment so same page#section isn't treated as different
                 clean_url = parsed._replace(fragment="").geturl()
-
                 found_links.add(clean_url)
 
                 # Crawl only pages on the same domain
                 if parsed.netloc == start_domain and clean_url not in visited_pages:
                     pages_to_visit.append(clean_url)
-            
-            pbar.update(1)
+            pbar.set_postfix({"links_found": len(found_links)})
 
-            if len(found_links) >= 100:
+            if len(visited_pages) >= max_pages:
                 break
 
 
