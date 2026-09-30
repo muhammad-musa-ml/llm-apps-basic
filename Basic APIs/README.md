@@ -1,6 +1,6 @@
 # Basic APIs
 
-This folder contains notebooks and scripts used for getting familiar with basic LLM and web scraping APIs.
+This folder contains notebooks and scripts used for getting familiar with basic LLM and web scraping APIs, and differnet arguments for the APIs.
 
 ## Main Project
 
